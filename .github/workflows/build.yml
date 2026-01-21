@@ -38,15 +38,16 @@ jobs:
         run: |
           cd externals/skia
           
-          EXTRA_CFLAGS='["-DSKIA_C_DLL"]'
           if [ "${{ matrix.target }}" = "loong64" ]; then
             EXTRA_CFLAGS='["-DSKIA_C_DLL", "-DPNG_LOONGARCH_LSX_OPT=0"]'
+          else
+            EXTRA_CFLAGS='["-DSKIA_C_DLL"]'
           fi
 
-          ./bin/gn gen "out/linux/${{ matrix.target }}" --args='is_official_build=true
+          gn gen "out/linux/${{ matrix.target }}" --args="is_official_build=true
             skia_enable_tools=false
-            target_os="linux"
-            target_cpu="${{ matrix.target }}"
+            target_os=\"linux\"
+            target_cpu=\"${{ matrix.target }}\"
             skia_use_icu=false
             skia_use_sfntly=false
             skia_use_piex=true
@@ -59,10 +60,10 @@ jobs:
             skia_enable_gpu=true
             skia_use_fontconfig=false
             skia_use_system_harfbuzz=false
-            extra_cflags='$EXTRA_CFLAGS'
-            extra_ldflags=["-static-libstdc++", "-static-libgcc"]
-            linux_soname_version="119.0.0"
-            is_component_build=false'
+            extra_cflags=$EXTRA_CFLAGS
+            extra_ldflags=[\"-static-libstdc++\", \"-static-libgcc\"]
+            linux_soname_version=\"119.0.0\"
+            is_component_build=false"
 
       - name: Ninja Build
         run: |
