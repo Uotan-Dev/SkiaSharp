@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [x64, arm64]
+        target: [x64]
     container: 
       image: ubuntu:24.04
     steps:
@@ -23,13 +23,10 @@ jobs:
           fi
 
       - name: Checkout SkiaSharp
-        uses: actions/checkout@v4
-        with:
-          # 使用完整的 ref 路径以消除歧义
-          ref: refs/tags/v3.119.1
-          submodules: recursive
-          # 获取完整历史以确保标签可用
-          fetch-depth: 0
+        run: |
+          git clone https://github.com/Uotan-Dev/SkiaSharp
+          cd SkiaSharp
+          git checkout v3.119.1
 
       - name: Sync Skia Dependencies
         run: |
