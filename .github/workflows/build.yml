@@ -44,7 +44,7 @@ jobs:
             EXTRA_CFLAGS='["-DSKIA_C_DLL"]'
           fi
 
-          gn gen "out/linux/${{ matrix.target }}" --args="is_official_build=true
+          ./bin/gn gen "out/linux/${{ matrix.target }}" --args="is_official_build=true
             skia_enable_tools=false
             target_os=\"linux\"
             target_cpu=\"${{ matrix.target }}\"
