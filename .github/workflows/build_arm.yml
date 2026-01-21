@@ -28,10 +28,10 @@ jobs:
         run: |
             cd externals/skia
             EXTRA_CFLAGS='["-DSKIA_C_DLL"]'
-            ./bin/gn gen "out/linux/${{ matrix.target }}" --args="is_official_build=true
+            ./bin/gn gen "out/linux/arm64" --args="is_official_build=true
             skia_enable_tools=false
             target_os=\"linux\"
-            target_cpu=\"${{ matrix.target }}\"
+            target_cpu=\"arm64\"
             skia_use_icu=false
             skia_use_sfntly=false
             skia_use_piex=true
@@ -52,11 +52,11 @@ jobs:
       - name: Ninja Build
         run: |
           cd externals/skia
-          ninja -C "out/linux/${{ matrix.target }}" SkiaSharp
+          ninja -C "out/linux/arm64" SkiaSharp
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: libskiasharp-linux-${{ matrix.target }}
+          name: libskiasharp-linux-arm64
           path: |
-            externals/skia/out/linux/${{ matrix.target }}/libSkiaSharp.so*
+            externals/skia/out/linux/arm64/libSkiaSharp.so*
