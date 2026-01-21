@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: Install System Dependencies
         run: |
-          apt-get update
-          apt-get install -y git python3 python3-setuptools ninja-build clang curl
+          sudo apt-get update
+          sudo apt-get install -y git python3 python3-setuptools ninja-build clang curl
 
       - name: Checkout SkiaSharp
         uses: actions/checkout@v4
