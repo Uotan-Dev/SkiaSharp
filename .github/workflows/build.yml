@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [x64, arm64, loong64] # 恢复矩阵，支持多个平台
+        target: [x64, arm64, loong64]
     container: 
-      image: ubuntu:24.04
+      image: debian:trixie
     steps:
       - name: Install System Dependencies
         run: |
