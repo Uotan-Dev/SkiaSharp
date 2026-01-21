@@ -1,5 +1,4 @@
-name: Build libSkiaSharp for Multiple Architectures
-
+name: Build libSkiaSharp for X64 Linux
 on:
   workflow_dispatch:
 
