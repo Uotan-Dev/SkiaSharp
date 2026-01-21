@@ -25,7 +25,7 @@ jobs:
       - name: Checkout SkiaSharp
         uses: actions/checkout@v4
         with:
-          ref: cc78b59339e105eac27f31317ba8501e7932693b
+          ref: main
           submodules: recursive
           fetch-depth: 0
 
