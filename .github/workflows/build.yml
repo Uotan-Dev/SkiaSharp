@@ -15,7 +15,7 @@ jobs:
       - name: Install System Dependencies
         run: |
           apt-get update
-          apt-get install -y git python3 python3-setuptools ninja-build clang curl
+          apt-get install -y git python3 python3-setuptools ninja-build clang curl 
           if [ "${{ matrix.target }}" = "arm64" ]; then
             apt-get install -y binutils-aarch64-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu
           elif [ "${{ matrix.target }}" = "loong64" ]; then
@@ -25,8 +25,11 @@ jobs:
       - name: Checkout SkiaSharp
         uses: actions/checkout@v4
         with:
-          ref: v3.119.1
+          # 使用完整的 ref 路径以消除歧义
+          ref: refs/tags/v3.119.1
           submodules: recursive
+          # 获取完整历史以确保标签可用
+          fetch-depth: 0
 
       - name: Sync Skia Dependencies
         run: |
